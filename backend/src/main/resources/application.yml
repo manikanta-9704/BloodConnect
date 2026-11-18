@@ -1,0 +1,28 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: bloodconnect
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/bloodconnect}
+    username: ${SPRING_DATASOURCE_USERNAME:bloodconnect}
+    password: ${SPRING_DATASOURCE_PASSWORD:bloodconnect}
+  jpa:
+    hibernate:
+      ddl-auto: update
+    open-in-view: false
+  ai:
+    openai:
+      api-key: ${OPENAI_API_KEY:}
+      chat:
+        options:
+          model: gpt-4o-mini
+    vectorstore:
+      pgvector:
+        initialize-schema: true
+        dimensions: 1536
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
